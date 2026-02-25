@@ -8,7 +8,6 @@ Scrum is a specific methodology of agile, sometimes called Agile Scrum. An impor
 <br>
 <br>
 <br>
-<br>
 <img width="600" alt="image" src="https://github.com/user-attachments/assets/6c346b2e-b313-4588-b3e3-b7a4f8c998f1" /><br>
 *Chet Hendrickson (right) and another man (potentially Kent Beck) look to Ron Jeffries (centre) for advice, unsure of what to say Jeffries looks to his Pepsi for advice. 2015*
 
