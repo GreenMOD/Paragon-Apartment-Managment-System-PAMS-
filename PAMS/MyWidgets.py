@@ -443,7 +443,7 @@ class Dashboard(QWidget):
 #region Database Widgets
 
 
-class Table(QTableWidget):
+class Table(QTableWidget):  
     def __init__(self, records, headers):
         super().__init__()
         print(len(headers))
@@ -460,7 +460,12 @@ class Table(QTableWidget):
             for y in range(0,len(records[x])):
                 self.setItem(x,y,QTableWidgetItem(str(records[x][y])))
     
-
+    def search(self, string : str):
+        matches = self.findItems(string,Qt.MatchFlag.MatchContains)
+        for rows in range(0,self.rowCount()):
+            self.hideRow(rows)
+        for match in matches:
+            self.showRow(match.row())
 
 
         
@@ -746,3 +751,4 @@ class FrontDeskDashboard(QWidget):
         return fName,lName,email,password,phoneNumber,nationalInsurance,occupation
 
 #endregion
+

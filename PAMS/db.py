@@ -5,30 +5,27 @@ import mysql.connector
 from mysql.connector import errorcode
 
 from dbSecrets import *
-from PySide6.QtWidgets import *
-from PySide6.QtGui import *
-from PySide6.QtCore import * 
-from PySide6.QtSql import *
+
 from ErrorBoxes import ErrorMessage
 
 isUsingDev = True
 
-host = local
-user = localUser
-password = localDbPassword
-dbName = "asddev"
+host = ""
+user = ""
+password = ""
+dbName = ""
 
 def GetConnection():
-    # if isUsingDev:
-    #     host = devHost
-    #     user = devUser
-    #     password = devPassword
-    #     dbName = devName
-    # else: 
-    #     host = prodHost
-    #     user = prodUser
-    #     password = prodPassword
-    #     dbName = prodName
+    if isUsingDev:
+        host = devHost
+        user = devUser
+        password = devPassword
+        dbName = devName
+    else: 
+        host = prodHost
+        user = prodUser
+        password = prodPassword
+        dbName = prodName
 
     try:
         conn = mysql.connector.connect(host = host, user = user, password =password)
@@ -52,7 +49,7 @@ def GetTenants():
     conn = GetConnection()
 
     dbcursor = conn.cursor()    #Creating cursor object
-    dbcursor.execute('USE {};'.format(dbName)) #use database'
+    dbcursor.execute('USE {};'.format(devName)) #use database'
     print("Entered Database")   
     dbcursor.execute(query)
     records = dbcursor.fetchall()
@@ -60,6 +57,7 @@ def GetTenants():
 
     conn.close()
     dbcursor.close()
+    print("Closed Database")
     return records
 
 def GetLocations():
@@ -69,7 +67,7 @@ def GetLocations():
     conn = GetConnection()
 
     dbcursor = conn.cursor()    #Creating cursor object
-    dbcursor.execute('USE {};'.format(dbName)) #use database'
+    dbcursor.execute('USE {};'.format(devName)) #use database'
     print("Entered Database")   
     dbcursor.execute(query)
     records = dbcursor.fetchall()
@@ -77,6 +75,7 @@ def GetLocations():
 
     conn.close()
     dbcursor.close()
+    print("Closed Database")
     return records
 
 # Gets all the headers from a table in the database
@@ -85,12 +84,13 @@ def GetHeaders(table : str):
 
     conn = GetConnection()
     dbcursor = conn.cursor()    #Creating cursor object
-    dbcursor.execute('USE {};'.format(dbName)) #use database'
+    dbcursor.execute('USE {};'.format(devName)) #use database'
     print("Entered Database")
     dbcursor.execute(query, (table,))
     headers = dbcursor.fetchall()
     dbcursor.close()
     conn.close()
+    print("Closed Database")
     return headers
 
 def CheckEmailIsValid(email : str):
@@ -98,7 +98,7 @@ def CheckEmailIsValid(email : str):
 
     conn = GetConnection()
     dbcursor = conn.cursor()    #Creating cursor object
-    dbcursor.execute('USE {};'.format(dbName)) #use database'
+    dbcursor.execute('USE {};'.format(devName)) #use database'
     print("Entered Database")
     dbcursor.execute(query, (email,))
     user = dbcursor.fetchone()
@@ -156,5 +156,4 @@ def LoginUser(email : str, hashedPassword : str):
         conn.close()
         print("Database Closed")
         return None
-
 
