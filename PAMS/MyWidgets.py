@@ -446,8 +446,6 @@ class Dashboard(QWidget):
 class Table(QTableWidget):  
     def __init__(self, records, headers):
         super().__init__()
-        print(len(headers))
-        print(len(records))
         lenHeader = len(headers)
         lenRecords = len(records)
         self.setColumnCount(lenHeader)
@@ -717,11 +715,16 @@ class FrontDeskDashboard(QWidget):
         self.occupationDropdown.setItemText(1, QCoreApplication.translate("Form", u"Unemployed", None))
         self.occupationDropdown.setItemText(2, QCoreApplication.translate("Form", u"Employed", None))
         self.occupationDropdown.setItemText(3, QCoreApplication.translate("Form", u"Part-Time", None))
-
         self.occupationDropdown.setPlaceholderText(QCoreApplication.translate("Form", u"Occupation", None))
         self.submitButton.setText(QCoreApplication.translate("Form", u"Submit", None))
         self.passwordInput.setText("")
         self.passwordInput.setPlaceholderText(QCoreApplication.translate("Form", u"Password", None))
+        self.tenantTable = QTableWidget(self.manageTenants)
+        self.tenantTable.setObjectName(u"tenantTable")
+        self.tenantTable.setGeometry(QRect(10, 30, 711, 201))
+        self.searchBar = QLineEdit(self.manageTenants)
+        self.searchBar.setObjectName(u"searchBar")
+        self.searchBar.setGeometry(QRect(610, 10, 113, 22))
     # retranslateUi
 
     def UpdateTenants(self, records, headers):
@@ -729,9 +732,7 @@ class FrontDeskDashboard(QWidget):
         self.tenantTable.setParent(self.manageTenants)
         self.tenantTable.setObjectName(u"tenantTable")
         self.tenantTable.setGeometry(QRect(10, 30, 711, 201))
-        self.searchBar = QLineEdit(self.manageTenants)
-        self.searchBar.setObjectName(u"searchBar")
-        self.searchBar.setGeometry(QRect(610, 10, 113, 22))
+
         
     def Submit(self):
         fName = self.firstNameInput.text()

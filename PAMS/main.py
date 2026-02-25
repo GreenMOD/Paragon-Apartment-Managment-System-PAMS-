@@ -15,7 +15,7 @@ class mainScreen(QMainWindow , Ui_MainWindow):
         self.setWindowTitle("PAMS")
         self.setMaximumSize(self.size())
 #region Testing Section
-        # self.switchTestingPage()
+        #self.switchTestingPage()
 
         #self.switchFrontDeskDashboard()
 #endregion
@@ -29,7 +29,7 @@ class mainScreen(QMainWindow , Ui_MainWindow):
         #Customer Page
 
         self.CustLogin.loginBtn.clicked.connect(lambda : self.LoginTenantBTN(self.CustLogin.emailInput.toPlainText(),self.CustLogin.passwordInput.toPlainText()))
-        self.AdminLogin.loginBtn.clicked.connect(lambda : self.switchFrontDeskDashboard())
+        self.AdminLogin.loginBtn.clicked.connect(lambda :  self.switchFrontDeskDashboard())
 
         self.CustLogin.signUpBtn.clicked.connect(lambda : self.switchCustomerSignUp())
         self.CustSignUp.submitBtn.clicked.connect(lambda : self.SignUpUser(self.CustSignUp.emailInput.toPlainText()))
@@ -37,7 +37,7 @@ class mainScreen(QMainWindow , Ui_MainWindow):
         #Testing Page
         self.TestingPage.testBtn1.clicked.connect(lambda : self.getTenantsTable())
         self.TestingPage.testBtn2.clicked.connect(lambda : self.getLocationsTable())
-        #self.TestingPage.testBtn3.clicked.connect(lambda : )
+        self.TestingPage.testBtn3.clicked.connect(lambda : self.getTenantsTable())
         #self.TestingPage.testBtn4.clicked.connect(lambda : )
 
         #Front Desk Page
@@ -76,6 +76,8 @@ class mainScreen(QMainWindow , Ui_MainWindow):
     def switchFrontDeskDashboard(self):
         self.stackedView.setCurrentIndex(7)
         self.FrontDeskDash.UpdateTenants(GetTenants(),GetHeaders("tenants"))
+        #.table2 = self.FrontDeskDash.tenantTable
+        #self.table2.show()
         self.FrontDeskDash.searchBar.textChanged.connect(lambda : self.FrontDeskDash.tenantTable.search(self.FrontDeskDash.searchBar.text()))
 #endregion
 
