@@ -636,111 +636,113 @@ class DetailedSignUpPage(QWidget):
     # retranslateUi
 #endregion
 
-class AdminDashboardPage(QWidget):
+#region Front Desk Dashboard
+class FrontDeskDashboard(QWidget):
     def __init__(self):
         super().__init__()
-        self.setObjectName("AdminDashboard")
-        self.resize(820, 580)
+        self.resize(831, 581)
+        self.title = QLabel(self)
+        self.title.setObjectName(u"title")
+        self.title.setGeometry(QRect(350, 20, 118, 16))
+        self.manageTenants = QGroupBox(self)
+        self.manageTenants.setObjectName(u"manageTenants")
+        self.manageTenants.setGeometry(QRect(40, 320, 731, 241))
+        self.errorMessage_2 = QWidget(self.manageTenants)
+        self.errorMessage_2.setObjectName(u"errorMessage_2")
+        self.errorMessage_2.setGeometry(QRect(480, 80, 231, 141))
+        self.tenantTable = QTableWidget(self.manageTenants)
+        self.tenantTable.setObjectName(u"tenantTable")
+        self.tenantTable.setGeometry(QRect(10, 30, 711, 201))
+        self.searchBar = QLineEdit(self.manageTenants)
+        self.searchBar.setObjectName(u"searchBar")
+        self.searchBar.setGeometry(QRect(610, 10, 113, 22))
+        self.registerTenants = QGroupBox(self)
+        self.registerTenants.setObjectName(u"registerTenants")
+        self.registerTenants.setGeometry(QRect(40, 50, 731, 241))
+        self.firstNameInput = QLineEdit(self.registerTenants)
+        self.firstNameInput.setObjectName(u"firstNameInput")
+        self.firstNameInput.setGeometry(QRect(20, 40, 113, 21))
+        self.lastNameInput = QLineEdit(self.registerTenants)
+        self.lastNameInput.setObjectName(u"lastNameInput")
+        self.lastNameInput.setGeometry(QRect(20, 80, 113, 21))
+        self.emailInput = QLineEdit(self.registerTenants)
+        self.emailInput.setObjectName(u"emailInput")
+        self.emailInput.setGeometry(QRect(20, 120, 113, 21))
+        self.nationalInsuranceInput = QLineEdit(self.registerTenants)
+        self.nationalInsuranceInput.setObjectName(u"nationalInsuranceInput")
+        self.nationalInsuranceInput.setGeometry(QRect(410, 50, 161, 21))
+        self.phoneNumberInput = QLineEdit(self.registerTenants)
+        self.phoneNumberInput.setObjectName(u"phoneNumberInput")
+        self.phoneNumberInput.setGeometry(QRect(410, 110, 161, 21))
+        self.occupationDropdown = QComboBox(self.registerTenants)
+        self.occupationDropdown.addItem("")
+        self.occupationDropdown.addItem("")
+        self.occupationDropdown.addItem("")
+        self.occupationDropdown.addItem("")
+        self.occupationDropdown.setObjectName(u"occupationDropdown")
+        self.occupationDropdown.setGeometry(QRect(410, 170, 171, 26))
+        self.submitButton = QPushButton(self.registerTenants)
+        self.submitButton.setObjectName(u"submitButton")
+        self.submitButton.setGeometry(QRect(600, 200, 81, 26))
+        self.passwordInput = QLineEdit(self.registerTenants)
+        self.passwordInput.setObjectName(u"passwordInput")
+        self.passwordInput.setGeometry(QRect(20, 170, 113, 21))
 
-        # Main layout
-        self.mainLayout = QVBoxLayout(self)
-        self.mainLayout.setContentsMargins(20, 20, 20, 20)
-        self.mainLayout.setSpacing(20)
+        self.retranslateUi()
 
-        # Title
-        self.title = QLabel("Admin Dashboard")
-        self.title.setFont(title)
-        self.title.setAlignment(Qt.AlignCenter)
-        self.mainLayout.addWidget(self.title)
-
-        # Subtitle
-        self.subtitle = QLabel("Manage Administrators & Assign Locations")
-        self.subtitle.setFont(heading)
-        self.subtitle.setAlignment(Qt.AlignCenter)
-        self.mainLayout.addWidget(self.subtitle)
-
-        # --- Add New Admin Section ---
-        self.addAdminGroup = QGroupBox("Add New Admin")
-        self.addAdminGroup.setFont(heading2)
-        self.addAdminLayout = QGridLayout(self.addAdminGroup)
-
-        # Email
-        self.emailLabel = QLabel("Email:")
-        self.emailLabel.setFont(text)
-        self.emailInput = QLineEdit()
-        self.emailInput.setPlaceholderText("admin@domain.com")
-
-        # First Name
-        self.firstNameLabel = QLabel("First Name:")
-        self.firstNameLabel.setFont(text)
-        self.firstNameInput = QLineEdit()
-        self.firstNameInput.setPlaceholderText("e.g. Sarah")
-
-        # Last Name
-        self.lastNameLabel = QLabel("Last Name:")
-        self.lastNameLabel.setFont(text)
-        self.lastNameInput = QLineEdit()
-        self.lastNameInput.setPlaceholderText("e.g. Johnson")
-
-        # Password
-        self.passwordLabel = QLabel("Password:")
-        self.passwordLabel.setFont(text)
-        self.passwordInput = QLineEdit()
-        self.passwordInput.setEchoMode(QLineEdit.Password)
-
-        # Submit Button
-        self.createAdminBtn = QPushButton("Create Admin")
-        self.createAdminBtn.setFont(text)
-
-        # Add widgets to grid
-        self.addAdminLayout.addWidget(self.emailLabel, 0, 0)
-        self.addAdminLayout.addWidget(self.emailInput, 0, 1)
-
-        self.addAdminLayout.addWidget(self.firstNameLabel, 1, 0)
-        self.addAdminLayout.addWidget(self.firstNameInput, 1, 1)
-
-        self.addAdminLayout.addWidget(self.lastNameLabel, 2, 0)
-        self.addAdminLayout.addWidget(self.lastNameInput, 2, 1)
-
-        self.addAdminLayout.addWidget(self.passwordLabel, 3, 0)
-        self.addAdminLayout.addWidget(self.passwordInput, 3, 1)
-
-        self.addAdminLayout.addWidget(self.createAdminBtn, 4, 0, 1, 2, alignment=Qt.AlignCenter)
-
-        self.mainLayout.addWidget(self.addAdminGroup)
-
-        # --- Assign Admin to Location Section ---
-        self.assignGroup = QGroupBox("Assign Admin to Location")
-        self.assignGroup.setFont(heading2)
-        self.assignLayout = QGridLayout(self.assignGroup)
-
-        # Admin dropdown
-        self.adminSelectLabel = QLabel("Select Admin:")
-        self.adminSelectLabel.setFont(text)
-        self.adminSelect = QComboBox()
-        self.adminSelect.addItems(["-- Select Admin --"])  # Fill dynamically later
-
-        # Location dropdown
-        self.locationSelectLabel = QLabel("Select Location:")
-        self.locationSelectLabel.setFont(text)
-        self.locationSelect = QComboBox()
-        self.locationSelect.addItems(["-- Select Location --"])  # Fill dynamically later
-
-        # Assign button
-        self.assignBtn = QPushButton("Assign")
-        self.assignBtn.setFont(text)
-
-        # Add widgets to grid
-        self.assignLayout.addWidget(self.adminSelectLabel, 0, 0)
-        self.assignLayout.addWidget(self.adminSelect, 0, 1)
-
-        self.assignLayout.addWidget(self.locationSelectLabel, 1, 0)
-        self.assignLayout.addWidget(self.locationSelect, 1, 1)
-
-        self.assignLayout.addWidget(self.assignBtn, 2, 0, 1, 2, alignment=Qt.AlignCenter)
-
-        self.mainLayout.addWidget(self.assignGroup)
+        QMetaObject.connectSlotsByName(self)
+    # setupUi
 
     def retranslateUi(self):
-        # Optional if you want translation support
-        pass
+        self.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
+        self.title.setText(QCoreApplication.translate("Form", u"Front Desk Dashboard", None))
+        self.manageTenants.setTitle(QCoreApplication.translate("Form", u"Manage Tenants", None))
+        self.searchBar.setPlaceholderText(QCoreApplication.translate("Form", u"Search", None))
+        self.registerTenants.setTitle(QCoreApplication.translate("Form", u"Register Tenants", None))
+        self.firstNameInput.setPlaceholderText(QCoreApplication.translate("Form", u"First Name", None))
+        self.lastNameInput.setText("")
+        self.lastNameInput.setPlaceholderText(QCoreApplication.translate("Form", u"Last Name", None))
+        self.emailInput.setText("")
+        self.emailInput.setPlaceholderText(QCoreApplication.translate("Form", u"Email", None))
+        self.nationalInsuranceInput.setText("")
+        self.nationalInsuranceInput.setPlaceholderText(QCoreApplication.translate("Form", u"National Insurance Number", None))
+        self.phoneNumberInput.setText("")
+        self.phoneNumberInput.setPlaceholderText(QCoreApplication.translate("Form", u"Phone Number", None))
+        self.occupationDropdown.setItemText(0, QCoreApplication.translate("Form", u"Student", None))
+        self.occupationDropdown.setItemText(1, QCoreApplication.translate("Form", u"Unemployed", None))
+        self.occupationDropdown.setItemText(2, QCoreApplication.translate("Form", u"Employed", None))
+        self.occupationDropdown.setItemText(3, QCoreApplication.translate("Form", u"Part-Time", None))
+
+        self.occupationDropdown.setPlaceholderText(QCoreApplication.translate("Form", u"Occupation", None))
+        self.submitButton.setText(QCoreApplication.translate("Form", u"Submit", None))
+        self.passwordInput.setText("")
+        self.passwordInput.setPlaceholderText(QCoreApplication.translate("Form", u"Password", None))
+    # retranslateUi
+
+    def UpdateTenants(self, records, headers):
+        self.tenantTable = Table(records,headers)
+        self.tenantTable.setParent(self.manageTenants)
+        self.tenantTable.setObjectName(u"tenantTable")
+        self.tenantTable.setGeometry(QRect(10, 30, 711, 201))
+        self.searchBar = QLineEdit(self.manageTenants)
+        self.searchBar.setObjectName(u"searchBar")
+        self.searchBar.setGeometry(QRect(610, 10, 113, 22))
+        
+    def Submit(self):
+        fName = self.firstNameInput.text()
+        lName = self.lastNameInput.text()
+        email = self.emailInput.text()
+        password = self.passwordInput.text()
+        phoneNumber = self.phoneNumberInput.text() #TODO phonenumber checking is valid phone number
+        nationalInsurance = self.nationalInsuranceInput.text()
+        occupation = self.occupationDropdown.currentText()
+        self.firstNameInput.clear()
+        self.lastNameInput.clear()
+        self.emailInput.clear()
+        self.passwordInput.clear()
+        self.phoneNumberInput.clear()
+        self.nationalInsuranceInput.clear()
+        self.occupationDropdown.setCurrentIndex(0)
+        return fName,lName,email,password,phoneNumber,nationalInsurance,occupation
+
+#endregion

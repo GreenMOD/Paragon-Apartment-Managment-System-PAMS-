@@ -117,4 +117,44 @@ def CheckEmailIsValid(email : str):
         print("Database Closed")
         return None
 
+#This assumes that the email has already been checked
+def SignUpUser(fName : str, lName : str, email : str, password : str, NINumber : str, phoneNum : int, job: str):
+    #TODO do SQL injection protection
+    query = "INSERT INTO tenants (first_name,last_name,national_insurance, email,password,phone_number,occupation) VALUES (%s,%s,%s,%s,%s,%s,%s);"
+    conn = GetConnection()
+
+    dbcursor = conn.cursor()    #Creating cursor object
+    dbcursor.execute('USE {};'.format(devName)) #use database'
+    print("Entered Database")   
+    dbcursor.execute(query, (fName,lName,NINumber,email,password,phoneNum,job,))
+    conn.commit()
+
+
+    conn.close()
+    dbcursor.close()
+    print("Closed Database")
+    return None
+def LoginUser(email : str, hashedPassword : str):
+    query = "SELECT * FROM tenants WHERE email = %s AND password =%s"
+    conn = GetConnection()
+
+    dbcursor = conn.cursor()    #Creating cursor object
+    dbcursor.execute('USE {};'.format(devName)) #use database'
+    print("Entered Database")   
+    dbcursor.execute(query, (email, password ,))
+    tenant = dbcursor.fetchone()
+    if tenant is None:
+        dbcursor.close()
+        conn.close()
+        print("Database Closed")
+        title = "Failure To Login"
+        description = "No user matches the credentials provided."
+        error = ErrorMessage(title, description)
+        return (error)
+    else:
+        dbcursor.close()
+        conn.close()
+        print("Database Closed")
+        return None
+
 

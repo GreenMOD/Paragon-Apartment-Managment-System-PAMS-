@@ -74,8 +74,8 @@ class Ui_MainWindow(object):
         #end region
         
         #region Page 8 Admin Dashboard
-        self.AdminDash = AdminDashboardPage()
-        self.stackedView.addWidget(self.AdminDash)
+        self.FrontDeskDash = FrontDeskDashboard()
+        self.stackedView.addWidget(self.FrontDeskDash)
         #endregion
         
         MainWindow.setCentralWidget(self.View)

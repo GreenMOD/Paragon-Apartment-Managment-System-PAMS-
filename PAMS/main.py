@@ -27,7 +27,7 @@ class mainScreen(QMainWindow , Ui_MainWindow):
         #Customer Page
 
         self.CustLogin.loginBtn.clicked.connect(lambda : self.switchCustomerView())
-        self.AdminLogin.loginBtn.clicked.connect(lambda : self.switchAdminView())
+        self.AdminLogin.loginBtn.clicked.connect(lambda : self.switchFrontDeskDashboard())
 
         self.CustLogin.signUpBtn.clicked.connect(lambda : self.switchCustomerSignUp())
         self.CustSignUp.submitBtn.clicked.connect(lambda : self.SignUpUser(self.CustSignUp.emailInput.toPlainText()))
@@ -64,10 +64,10 @@ class mainScreen(QMainWindow , Ui_MainWindow):
         self.stackedView.setCurrentIndex(6)
         self.DetailedSignUp.emailInput.setText(email)
     
-    def switchAdminView(self):
-        #Change when page is implemented to customer dashboard
+    def switchFrontDeskDashboard(self):
         self.stackedView.setCurrentIndex(7)
-    #endregion
+        self.FrontDeskDash.UpdateTenants(GetTenants(),GetHeaders("tenants"))
+        self.FrontDeskDash.searchBar.textChanged.connect(lambda : self.FrontDeskDash.tenantTable.search(self.FrontDeskDash.searchBar.text()))
 
     def SignUpUser(self, email : str):
         error = CheckEmailIsValid(email)
