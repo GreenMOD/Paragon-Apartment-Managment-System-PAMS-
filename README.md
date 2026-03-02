@@ -3,8 +3,10 @@
 
 ## Agile
 An Agile framework is a structured approach based on taking an iterative approach to  project management. [Joseph A. Griffin](https://cps.northeastern.edu/faculty/joseph-griffin/)  said 'Think of Agile broadly as a guiding orientation for how we approach project work.'
-
+### Scrum
 Scrum is a specific methodology of agile, sometimes called Agile Scrum. An important aspect of Scrum is its roles, Alongside the developers  is the Scrum Master who organises meeting and insures that all developers adhere to the Scrum methodology. More seniorly is the Product Owner who sets out the vision, builds the gap between the stakeholders and developers. Agile also needs agile ceremonies. An important ceremony within Scrum is a Scrum Sprint. Sprints are short (in our case usually one or two weeks long) events where a goal is set and the team attempts to deliver said goal within the set time. 
+
+Before we moved to Agile Scrum we fell into the Waterfall methodology as we were not yet aware of the flexibility required for our project. The Waterfall methodology also appeared more appealing as the goal and timescale for our project had already been laid out with little chance for change. 
 <br>
 <br>
 <br>
