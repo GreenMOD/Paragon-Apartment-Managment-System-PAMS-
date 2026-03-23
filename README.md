@@ -15,7 +15,7 @@ Over time we transitioned from Waterfall to Agile Scrum as it proved to be more 
 *Chet Hendrickson (right) and another man (potentially Kent Beck) look to Ron Jeffries (centre) for advice, unsure of what to say Jeffries looks to his Pepsi for advice. 2015*
 <br>
 <br>
-## Implimentation
+## Implementation
 When we began our project, we decided on Python as the language we wanted to develop our application with. This is because Python was the most accessible language that we all knew. Python was also the best choice as the library we were planning on using for connecting to our database was my-sql-connector. My-sql-connector is a library that had drivers for Python that we all used last year for setting up database connectivity. However, when it came to the framework for displaying the GUI and providing functionality with the front end, it was a more difficult decision. 
 ### PySide 6
 Pyside 6 was an obvious first choice. Based off the Qt framework, Pyside 6 is a contains a vast number of cross-platform compatible widgets. These widgets range from labels and buttons to whole windows and pop ups.

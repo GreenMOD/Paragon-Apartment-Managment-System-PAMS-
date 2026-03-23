@@ -6,7 +6,8 @@ from PySide6.QtCore import *
 from uiMainWindow import Ui_MainWindow
 from db import *
 from ErrorBoxes import *
-from MyWidgets import Table
+from MyWidgets import Table, Ui_NotificationsDashboard
+from inboxController import InboxController
 
 class mainScreen(QMainWindow , Ui_MainWindow):
     def __init__(self):
@@ -121,13 +122,27 @@ class mainScreen(QMainWindow , Ui_MainWindow):
         self.table.show()
 #endregion
 
+class notifScreen(QMainWindow , Ui_NotificationsDashboard):
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
+        self.setWindowTitle("PAMS")
+        self.setMaximumSize(self.size())
+
+#region Notifications Dashboard Functions
+
+
 #region App
+
 app = QApplication()
 
 #Creates a main window and places the ui created in designer onto it 
-mainWindow = mainScreen()
-
-mainWindow.show()
+#mainWindow = mainScreen()
+window = notifScreen()
+tenant_id = 5
+location_id = 1
+controller = InboxController(window, tenant_id, location_id)
+window.show()
 
 app.exec()
 

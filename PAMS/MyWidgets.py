@@ -358,7 +358,6 @@ class Dashboard(QWidget):
             self.label.setGeometry(QRect(270, 190, 58, 16))
             self.stackedWidget.addWidget(self.complaintsPage)
 
-
             #Sidebar
 
             self.sideBar = QWidget(self)
@@ -753,3 +752,90 @@ class FrontDeskDashboard(QWidget):
 
 #endregion
 
+#region Notifications Dashboard
+
+class Ui_NotificationsDashboard(object):
+
+    def setupUi(self, NotificationsDashboard):
+
+        if not NotificationsDashboard.objectName():
+            NotificationsDashboard.setObjectName("NotificationsDashboard")
+
+        NotificationsDashboard.resize(831, 487)
+
+        # -------------------------
+        # LEFT SIDE (Inbox List)
+        # -------------------------
+
+        self.previewList = QScrollArea(NotificationsDashboard)
+        self.previewList.setGeometry(QRect(20, 90, 171, 381))
+        self.previewList.setWidgetResizable(True)
+
+        self.inbox = QWidget()
+        self.inboxLayout = QVBoxLayout(self.inbox)
+        self.inboxLayout.setContentsMargins(5, 5, 5, 5)
+        self.inboxLayout.setSpacing(5)
+        self.inboxLayout.addStretch()  # keeps items at top
+
+        self.previewList.setWidget(self.inbox)
+
+        # -------------------------
+        # RIGHT SIDE (Message View)
+        # -------------------------
+
+        self.expandedMessage = QScrollArea(NotificationsDashboard)
+        self.expandedMessage.setGeometry(QRect(220, 90, 581, 381))
+        self.expandedMessage.setWidgetResizable(True)
+
+        self.message = QWidget()
+        self.messageLayout = QVBoxLayout(self.message)
+        self.messageLayout.setContentsMargins(10, 10, 10, 10)
+
+        self.messageBody = QLabel("")
+        self.messageBody.setWordWrap(True)
+        self.messageLayout.addWidget(self.messageBody)
+
+        self.expandedMessage.setWidget(self.message)
+
+        # -------------------------
+        # HEADER
+        # -------------------------
+
+        self.header = QGroupBox(NotificationsDashboard)
+        self.header.setGeometry(QRect(20, 0, 781, 80))
+
+        self.personal = QCheckBox(self.header)
+        self.personal.setGeometry(QRect(90, 50, 85, 20))
+
+        self.public = QCheckBox(self.header)
+        self.public.setGeometry(QRect(10, 50, 85, 20))
+
+        self.label = QLabel(self.header)
+        self.label.setGeometry(QRect(10, 10, 200, 31))
+        font = QFont()
+        font.setPointSize(23)
+        font.setBold(True)
+        self.label.setFont(font)
+
+        self.subject = QLabel(self.header)
+        self.subject.setGeometry(QRect(200, 50, 511, 20))
+        font1 = QFont()
+        font1.setPointSize(19)
+        font1.setBold(True)
+        self.subject.setFont(font1)
+
+        self.retranslateUi(NotificationsDashboard)
+        QMetaObject.connectSlotsByName(NotificationsDashboard)
+
+    def retranslateUi(self, NotificationsDashboard):
+        NotificationsDashboard.setWindowTitle(
+            QCoreApplication.translate("NotificationsDashboard", "Notifications", None)
+        )
+        self.personal.setText("Personal")
+        self.public.setText("Public")
+        self.label.setText("Your Inbox")
+        self.subject.setText("Message Subject")
+
+#endregion
+
+#region Maintenance Dashboard

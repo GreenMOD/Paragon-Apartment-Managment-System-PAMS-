@@ -134,6 +134,7 @@ def SignUpUser(fName : str, lName : str, email : str, password : str, NINumber :
     dbcursor.close()
     print("Closed Database")
     return None
+
 def LoginUser(email : str, hashedPassword : str):
     query = "SELECT * FROM tenants WHERE email = %s AND password =%s"
     conn = GetConnection()
@@ -157,3 +158,52 @@ def LoginUser(email : str, hashedPassword : str):
         print("Database Closed")
         return None
 
+def fetch_notifications(tenant_id=None, location_id=None):
+
+    conn = GetConnection()
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute('USE {};'.format(devName))
+
+    query = """
+    SELECT notification_id, subject, message, is_read, created_at
+    FROM notifications
+    """
+
+    conditions = []
+    params = []
+
+    if tenant_id:
+        conditions.append("tenant_id = %s")
+        params.append(tenant_id)
+
+    if location_id:
+        conditions.append("location_id = %s")
+        params.append(location_id)
+
+    if conditions:
+        query += " WHERE " + " OR ".join(conditions)
+    else:
+        return []
+
+    query += " ORDER BY created_at DESC"
+
+    cursor.execute(query, params)
+    results = cursor.fetchall()
+
+    conn.close()
+    return results
+
+
+def mark_notification_as_read(notification_id):
+
+    conn = GetConnection()
+    cursor = conn.cursor()
+    cursor.execute('USE {};'.format(devName))
+
+    cursor.execute(
+        "UPDATE notifications SET is_read = 1 WHERE notification_id = %s",
+        (notification_id,)
+    )
+
+    conn.commit()
+    conn.close()
