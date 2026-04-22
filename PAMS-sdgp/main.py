@@ -29,22 +29,22 @@ class mainScreen(QMainWindow , Ui_MainWindow):
         self.Welcome.loginAdminBtn.clicked.connect(lambda : self.switchAdminLoginPage())
 
         #Customer login Page
-        self.CustLogin.loginBtn.clicked.connect(lambda : self.LoginTenantBTN(self.CustLogin.emailInput.toPlainText(),self.CustLogin.passwordInput.toPlainText()))
+        self.CustLogin.loginBtn.clicked.connect(lambda : self.LoginTenantBTN(self.CustLogin.emailInput.toPlainText(),self.CustLogin.passwordInput.text()))
 
         self.CustLogin.signUpBtn.clicked.connect(lambda : self.switchCustomerSignUp())
         self.CustSignUp.submitBtn.clicked.connect(lambda : self.SignUpUser(self.CustSignUp.emailInput.toPlainText()))
 
         #Staff Login Page
-        self.StaffLogin.loginBtn.clicked.connect(lambda : self.loginStaffMember(self.StaffLogin.emailInput.toPlainText(), self.StaffLogin.passwordInput.toPlainText()))
+        self.StaffLogin.loginBtn.clicked.connect(lambda : self.loginStaffMember(self.StaffLogin.emailInput.toPlainText(), self.StaffLogin.passwordInput.text()))
 
         #Front Desk Page
         self.FrontDeskDash.manageTenants.submitButton.clicked.connect(lambda : self.RegisterTenant(self.FrontDeskDash.manageTenants.Submit()))
 
         #Admin Dashboard
-        self.AdminDash.userLocationDropdown.currentIndexChanged.connect(lambda : self.AdminDash.CreateUserTable(GetUsersFromLocation(self.AdminDash.userLocationDropdown.currentText()), GetHeaders("users", dbName), GetTenantsFromLocation(self.AdminDash.userLocationDropdown.currentText()), GetHeaders("tenants", dbName)))
-        self.AdminDash.userRefreshBtn.clicked.connect(lambda : self.AdminDash.CreateUserTable(GetUsersFromLocation(self.AdminDash.userLocationDropdown.currentText()), GetHeaders("users", dbName), GetTenantsFromLocation(self.AdminDash.userLocationDropdown.currentText()), GetHeaders("tenants", dbName)))
-        self.AdminDash.apartmentLocationDropdown.currentIndexChanged.connect(lambda : self.AdminDash.CreateApartmentTable(GetApartmentsFromLocation(GetLocation(self.AdminDash.apartmentLocationDropdown.currentText()).GetID()), GetHeaders("apartments", dbName)))
-        self.AdminDash.apartmentRefresh.clicked.connect(lambda : self.AdminDash.CreateApartmentTable(GetApartmentsFromLocation(GetLocation(self.AdminDash.apartmentLocationDropdown.currentText()).GetID()), GetHeaders("apartments", dbName)))
+        self.AdminDash.userLocationDropdown.currentIndexChanged.connect(lambda : self.AdminDash.CreateUserTable(GetUsersFromLocation(self.AdminDash.userLocationDropdown.currentText()), GetHeaders("users"), GetTenantsFromLocation(self.AdminDash.userLocationDropdown.currentText()), GetHeaders("tenants")))
+        self.AdminDash.userRefreshBtn.clicked.connect(lambda : self.AdminDash.CreateUserTable(GetUsersFromLocation(self.AdminDash.userLocationDropdown.currentText()), GetHeaders("users"), GetTenantsFromLocation(self.AdminDash.userLocationDropdown.currentText()), GetHeaders("tenants")))
+        self.AdminDash.apartmentLocationDropdown.currentIndexChanged.connect(lambda : self.AdminDash.CreateApartmentTable(GetApartmentsFromLocation(GetLocation(self.AdminDash.apartmentLocationDropdown.currentText()).GetID()), GetHeaders("apartments")))
+        self.AdminDash.apartmentRefresh.clicked.connect(lambda : self.AdminDash.CreateApartmentTable(GetApartmentsFromLocation(GetLocation(self.AdminDash.apartmentLocationDropdown.currentText()).GetID()), GetHeaders("apartments")))
         self.AdminDash.ReportPage.reportLocationDropdown.currentIndexChanged.connect(lambda : self.AdminDash.ReportPage.CreatePieCharts(self.MakePieChartUnoccupied(self.AdminDash.ReportPage.reportLocationDropdown.currentText()),self.MakePieChartPaymentInsights(self.AdminDash.ReportPage.reportLocationDropdown.currentText()),self.MakeMaintenanceRequestsPieChart(self.AdminDash.ReportPage.reportLocationDropdown.currentText())))
         
         #Sign Up Customer Page
@@ -132,8 +132,8 @@ class mainScreen(QMainWindow , Ui_MainWindow):
         self.AdminDash.setUser(admin)
         self.AdminDash.GetLocations(GetLocations())
         self.AdminDash.ReportPage.CreatePieCharts(self.MakePieChartUnoccupied(self.AdminDash.ReportPage.reportLocationDropdown.currentText()),self.MakePieChartPaymentInsights(self.AdminDash.ReportPage.reportLocationDropdown.currentText()),self.MakeMaintenanceRequestsPieChart(self.AdminDash.ReportPage.reportLocationDropdown.currentText()))
-        self.AdminDash.CreateUserTable(GetUsersFromLocation(self.AdminDash.userLocationDropdown.currentText()),GetHeaders("users", dbName),GetTenantsFromLocation(self.AdminDash.userLocationDropdown.currentText()),GetHeaders("tenants", dbName)) 
-        self.AdminDash.CreateApartmentTable(GetApartmentsFromLocation(GetLocation(self.AdminDash.apartmentLocationDropdown.currentText()).GetID()), GetHeaders("apartments", dbName))
+        self.AdminDash.CreateUserTable(GetUsersFromLocation(self.AdminDash.userLocationDropdown.currentText()),GetHeaders("users"),GetTenantsFromLocation(self.AdminDash.userLocationDropdown.currentText()),GetHeaders("tenants")) 
+        self.AdminDash.CreateApartmentTable(GetApartmentsFromLocation(GetLocation(self.AdminDash.apartmentLocationDropdown.currentText()).GetID()), GetHeaders("apartments"))
     
     
     def switchFrontDeskDashboard(self , frontDesk: User):
@@ -416,10 +416,39 @@ class mainScreen(QMainWindow , Ui_MainWindow):
 
 #region App
 
-app = QApplication()
+app = QApplication(sys.argv)
+app.setStyle("Fusion")
+palette = QPalette()
+
+
+# --- Window / Panels ---
+palette.setColor(QPalette.Window, QColor("#1E1E1E"))
+palette.setColor(QPalette.WindowText, QColor("#FFFFFF"))
+palette.setColor(QPalette.Base, QColor("#2D2D2D"))          # Input background
+palette.setColor(QPalette.AlternateBase, QColor("#252526"))
+palette.setColor(QPalette.ToolTipBase, QColor("#2D2D2D"))
+palette.setColor(QPalette.ToolTipText, QColor("#FFFFFF"))
+
+# --- Text ---
+palette.setColor(QPalette.Text, QColor("#FFFFFF"))
+palette.setColor(QPalette.ButtonText, QColor("#FFFFFF"))
+
+# --- Buttons ---
+palette.setColor(QPalette.Button, QColor("#2D2D2D"))
+
+# --- Highlights (selection, focus, etc.) ---
+palette.setColor(QPalette.Highlight, QColor("#2F54EB"))
+palette.setColor(QPalette.HighlightedText, QColor("#FFFFFF"))
+
+# --- Disabled text ---
+palette.setColor(QPalette.Disabled, QPalette.Text, QColor("#777777"))
+palette.setColor(QPalette.Disabled, QPalette.ButtonText, QColor("#777777"))
+
+app.setPalette(palette)
 
 #Creates a main window and places the ui created in designer onto it 
 mainWindow = mainScreen()
+mainWindow.setAutoFillBackground(True)
 mainWindow.show()
 
 app.exec()
@@ -432,3 +461,4 @@ app.exec()
 #TODO Have a look over and see if you can swap around how the mainwindow works its a tad inconsisitent
 
 #TODO MAKE CHECKS FOR ANY EMPTY ENTRIES
+    

@@ -101,60 +101,47 @@ class WelcomePage(QWidget):
 class CustomerLoginPage(QWidget):
         def __init__(self):
             super().__init__()
-
-            self.setObjectName(u"CustomerLogin")
-
-            # Group Box
+            self.resize(831, 581)
             self.loginGroup = QGroupBox(self)
             self.loginGroup.setObjectName(u"loginGroup")
-            self.loginGroup.setGeometry(QRect(9, 10, 811, 561))
-            
-
-            self.loginGroup.setFont(text)
+            self.loginGroup.setGeometry(QRect(10, 10, 811, 561))
+            font = QFont()
+            font.setFamilies([u"Calibri"])
+            font.setPointSize(18)
+            self.loginGroup.setFont(font)
             self.loginGroup.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
             self.loginGroup.setFlat(True)
-            
-            # Email
             self.emailLabel = QLabel(self.loginGroup)
             self.emailLabel.setObjectName(u"emailLabel")
             self.emailLabel.setGeometry(QRect(380, 170, 54, 30))
-
             self.emailInput = QTextEdit(self.loginGroup)
             self.emailInput.setObjectName(u"emailInput")
             self.emailInput.setGeometry(QRect(180, 200, 461, 41))
-
-            #Password 
-            self.passwordInput = QTextEdit(self.loginGroup)
-            self.passwordInput.setObjectName(u"passwordInput")
-            self.passwordInput.setGeometry(QRect(180, 300, 461, 41))
-
-            self.passwordInput.setFont(text)
-
             self.customerPassword = QLabel(self.loginGroup)
             self.customerPassword.setObjectName(u"password")
             self.customerPassword.setGeometry(QRect(360, 270, 93, 30))
-
-
-            #title
-            self.title = QLabel(self.loginGroup)
-            self.title.setObjectName(u"title")
-            self.title.setGeometry(QRect(240, 90, 310, 53))
-            
-            self.title.setFont(title)
-
-            #Buttons
             self.loginBtn = QPushButton(self.loginGroup)
-            self.loginBtn.setObjectName(u"loginBtn")
+            self.loginBtn.setObjectName(u"customerLoginBtn")
             self.loginBtn.setGeometry(QRect(340, 400, 129, 40))
-
             self.signUpBtn = QPushButton(self.loginGroup)
-            self.signUpBtn.setObjectName(u"signUpBtn")
+            self.signUpBtn.setObjectName(u"customerSignUpBtn")
             self.signUpBtn.setGeometry(QRect(340, 350, 129, 40))
+            self.customerLoginLabel = QLabel(self.loginGroup)
+            self.customerLoginLabel.setObjectName(u"customerLoginLabel")
+            self.customerLoginLabel.setGeometry(QRect(320, 100, 153, 30))
+            self.passwordInput = QLineEdit(self.loginGroup)
+            self.passwordInput.setObjectName(u"passwordInput")
+            self.passwordInput.setGeometry(QRect(180, 300, 461, 41))
+            self.passwordInput.setEchoMode(QLineEdit.EchoMode.Password)
+
+            self.retranslateUi()
+        # setupUi
 
         def retranslateUi(self):
+            self.setWindowTitle(QCoreApplication.translate("CustomerLogin", u"Form", None))
             self.loginGroup.setTitle("")
-            self.emailLabel.setText(QCoreApplication.translate("MainWindow", u"Email", None))
-            self.emailInput.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+            self.emailLabel.setText(QCoreApplication.translate("CustomerLogin", u"Email", None))
+            self.emailInput.setHtml(QCoreApplication.translate("CustomerLogin", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
     "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
     "p, li { white-space: pre-wrap; }\n"
     "hr { height: 1px; border-width: 0; }\n"
@@ -162,20 +149,12 @@ class CustomerLoginPage(QWidget):
     "li.checked::marker { content: \"\\2612\"; }\n"
     "</style></head><body style=\" font-family:'Calibri'; font-size:18pt; font-weight:400; font-style:normal;\">\n"
     "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
-            self.emailInput.setPlaceholderText(QCoreApplication.translate("MainWindow", u"e.g. paragon@gmail.com ", None))
-            self.passwordInput.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-    "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
-    "p, li { white-space: pre-wrap; }\n"
-    "hr { height: 1px; border-width: 0; }\n"
-    "li.unchecked::marker { content: \"\\2610\"; }\n"
-    "li.checked::marker { content: \"\\2612\"; }\n"
-    "</style></head><body style=\" font-family:'Bookshelf Symbol 7'; font-size:18pt; font-weight:400; font-style:normal;\">\n"
-    "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
-            self.passwordInput.setPlaceholderText("")
-            self.customerPassword.setText(QCoreApplication.translate("MainWindow", u"Password", None))
-            self.loginBtn.setText(QCoreApplication.translate("MainWindow", u"Login", None))
-            self.signUpBtn.setText(QCoreApplication.translate("MainWindow", u"Sign Up", None))
-            self.title.setText(QCoreApplication.translate("MainWindow", u"Customer Login", None))
+            self.emailInput.setPlaceholderText(QCoreApplication.translate("CustomerLogin", u"e.g. paragon@gmail.com ", None))
+            self.customerPassword.setText(QCoreApplication.translate("CustomerLogin", u"Password", None))
+            self.loginBtn.setText(QCoreApplication.translate("CustomerLogin", u"Login", None))
+            self.signUpBtn.setText(QCoreApplication.translate("CustomerLogin", u"Sign Up", None))
+            self.customerLoginLabel.setText(QCoreApplication.translate("CustomerLogin", u"Customer Login", None))
+    # retranslateUi
 
 #endregion
 
@@ -235,58 +214,43 @@ class AdminLoginPage(QWidget):
         super().__init__()
         self.staff = User("", "", "", "", "", "", "")
         self.setObjectName(u"AdminLogin")
-
-        # Group Box
-        self.adminGroup = QGroupBox(self)
+        self.resize(831, 581)
+        self.adminGroup = QFrame(self)
         self.adminGroup.setObjectName(u"adminGroup")
-        self.adminGroup.setGeometry(QRect(10, 10, 811, 561))
-
-        
-        self.adminGroup.setFont(text)
+        self.adminGroup.setGeometry(QRect(9, 9, 813, 563))
+        font = QFont()
+        font.setFamilies([u"Calibri"])
+        font.setPointSize(18)
+        self.adminGroup.setFont(font)
         self.adminGroup.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
-        self.adminGroup.setFlat(True)
-
-        #Email 
-
         self.emailLabel = QLabel(self.adminGroup)
         self.emailLabel.setObjectName(u"adminEmailLabel")
         self.emailLabel.setGeometry(QRect(380, 170, 54, 30))
-
         self.emailInput = QTextEdit(self.adminGroup)
         self.emailInput.setObjectName(u"adminEmailInput")
         self.emailInput.setGeometry(QRect(180, 200, 461, 41))
-
-        #Password
-
-        self.passwordInput = QTextEdit(self.adminGroup)
-        self.passwordInput.setObjectName(u"adminPasswordInput")
-        self.passwordInput.setGeometry(QRect(180, 300, 461, 41))
-        
-
         self.passwordLabel = QLabel(self.adminGroup)
         self.passwordLabel.setObjectName(u"adminPasswordLabel")
         self.passwordLabel.setGeometry(QRect(360, 270, 93, 30))
-
-        #Login Button
-
         self.loginBtn = QPushButton(self.adminGroup)
         self.loginBtn.setObjectName(u"adminLoginBtn")
         self.loginBtn.setGeometry(QRect(340, 370, 129, 40))
+        self.loginLabel = QLabel(self.adminGroup)
+        self.loginLabel.setObjectName(u"adminLoginLabel")
+        self.loginLabel.setGeometry(QRect(340, 110, 123, 30))
+        self.passwordInput = QLineEdit(self.adminGroup)
+        self.passwordInput.setObjectName(u"adminPasswordInput")
+        self.passwordInput.setGeometry(QRect(180, 300, 461, 41))
+        self.passwordInput.setEchoMode(QLineEdit.EchoMode.Password)
 
-        #Title
+        self.retranslateUi()
 
-        self.title = QLabel(self.adminGroup)
-        self.title.setObjectName(u"adminLoginLabel")
-        self.title.setGeometry(QRect(290, 90, 250, 53))
+    # setupUi
 
-
-        self.title.setFont(title)
-
-        
     def retranslateUi(self):
-        self.adminGroup.setTitle("")
-        self.emailLabel.setText(QCoreApplication.translate("MainWindow", u"Email", None))
-        self.emailInput.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+        self.setWindowTitle(QCoreApplication.translate("AdminLogin", u"Form", None))
+        self.emailLabel.setText(QCoreApplication.translate("AdminLogin", u"Email", None))
+        self.emailInput.setHtml(QCoreApplication.translate("AdminLogin", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "hr { height: 1px; border-width: 0; }\n"
@@ -294,19 +258,12 @@ class AdminLoginPage(QWidget):
 "li.checked::marker { content: \"\\2612\"; }\n"
 "</style></head><body style=\" font-family:'Calibri'; font-size:18pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
-        self.emailInput.setPlaceholderText(QCoreApplication.translate("MainWindow", u"e.g. paragon@gmail.com ", None))
-        self.passwordInput.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"hr { height: 1px; border-width: 0; }\n"
-"li.unchecked::marker { content: \"\\2610\"; }\n"
-"li.checked::marker { content: \"\\2612\"; }\n"
-"</style></head><body style=\" font-family:'Bookshelf Symbol 7'; font-size:18pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", None))
-        self.passwordInput.setPlaceholderText("")
-        self.passwordLabel.setText(QCoreApplication.translate("MainWindow", u"Password", None))
-        self.loginBtn.setText(QCoreApplication.translate("MainWindow", u"Login", None))
-        self.title.setText(QCoreApplication.translate("MainWindow", u"Admin Login", None))
+        self.emailInput.setPlaceholderText(QCoreApplication.translate("AdminLogin", u"e.g. paragon@gmail.com ", None))
+        self.passwordLabel.setText(QCoreApplication.translate("AdminLogin", u"Password", None))
+        self.loginBtn.setText(QCoreApplication.translate("AdminLogin", u"Login", None))
+        self.loginLabel.setText(QCoreApplication.translate("AdminLogin", u"Admin Login", None))
+        self.passwordInput.setText("")
+    # retranslateUi
 
         def setAdmin(self, admin : User):
             self.staff = admin
@@ -1608,6 +1565,7 @@ class AdminDashboard(userPage):
 
         #region Apartment Table
         self.apartmentTable = Table([],[])
+        self.apartmentTable
         self.apartmentTable.setObjectName(u"apartmentTable")
         self.apartmentTable.setGeometry(QRect(10, 50, 751, 371))
         self.apartmentTable.setParent(self.apartmentManage)
@@ -1704,11 +1662,13 @@ class AdminDashboard(userPage):
 
         #region User Table
         self.staffTable = Table((),())
+        self.staffTable.setParent(self.manageUsers) 
         self.staffTable.setObjectName(u"staffTable")
         self.staffTable.setGeometry(QRect(10, 50, 751, 371))
         
         #Tenant Table
         self.tenantTable = Table((),())
+        self.tenantTable.setParent(self.manageUsers)    
         self.tenantTable.setObjectName(u"tenantTable")
         self.tenantTable.setGeometry(QRect(10, 50, 751, 371))
         
