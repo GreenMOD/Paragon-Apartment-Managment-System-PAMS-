@@ -229,11 +229,10 @@ class RescheduleDialog(QDialog):
 
         try:
             self.maintenance_service.reschedule_request(
-                self.request.request_id,
+                self.request['request_id'],
                 worker_id,
                 start,
                 end,
-                self.current_user
             )
             self.accept()
         except Exception as e:

@@ -32,7 +32,7 @@ class MaintenanceService:
             scheduled_end=end
         )
         self.maintenance_repo.mark_scheduled(request_id)
-        self.user_repo.mark_as_booked(worker_id)
+        self.user_repo.mark_as_booked(worker_id, start, end)
 
         return
     
@@ -43,7 +43,7 @@ class MaintenanceService:
         self.scheduling_repo.delete_by_request_id(request_id)
         self.maintenance_repo.cancel_scheduled_request(request_id)
 
-    def reshedule_request(self, request_id, worker_id, start, end):
+    def reschedule_request(self, request_id, worker_id, start, end):
         self.scheduling_repo.delete_by_request_id(request_id)
         self.maintenance_repo.mark_pending(request_id)
         self.scheduling_repo.create(
@@ -53,7 +53,7 @@ class MaintenanceService:
             scheduled_end=end
         )
         self.maintenance_repo.mark_scheduled(request_id)
-        self.user_repo.mark_as_booked(worker_id)
+        self.user_repo.mark_as_booked(worker_id, start, end)
 
     def get_maintenance_requests_by_worker(self, user_id):
         return self.maintenance_repo.get_maintenance_requests_by_worker(user_id)

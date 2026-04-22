@@ -49,3 +49,10 @@ class SchedulingRepository(BaseRepository):
         WHERE request_id = %s
         """
         self.execute(query, (request_id,))
+        query = """
+        UPDATE worker_availability wa
+        JOIN maintenance_scheduling ms ON wa.user_id = ms.user_id
+        SET wa.status = 'Available'
+        WHERE ms.request_id = %s
+        """
+        self.execute(query, (request_id,))

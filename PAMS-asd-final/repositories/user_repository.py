@@ -36,13 +36,15 @@ class UserRepository(BaseRepository):
         results = self.fetch_all(query, (location_id, start, end))
         return results or []
     
-    def mark_as_booked(self, user_id):
+    def mark_as_booked(self, user_id, start, end):
         query = """
         UPDATE worker_availability
         SET status = 'Booked'
         WHERE user_id = %s
+        AND available_start = %s
+        AND available_end = %s
         """
-        self.execute(query, (user_id,))
+        self.execute(query, (user_id, start, end))
 
     def get_location_name_from_id(self, location_id: str):
         query = "SELECT location_name FROM locations WHERE locations.location_id = %s;"
