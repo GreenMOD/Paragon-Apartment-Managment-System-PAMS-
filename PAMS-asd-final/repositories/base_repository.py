@@ -1,3 +1,4 @@
+# MIA ANDAYA-ELORRIAGA 24063899 
 # Base repository for database operations
 # This class provides common methods for executing queries and fetching results.
 # Repositories for specific entities (e.g., UserRepository, ProductRepository) will inherit from this base class.

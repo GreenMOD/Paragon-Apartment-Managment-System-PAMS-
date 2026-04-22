@@ -1,3 +1,4 @@
+# MIA ANDAYA-ELORRIAGA 24063899 
 import bcrypt
 
 def password_hashing(password: str) -> str:

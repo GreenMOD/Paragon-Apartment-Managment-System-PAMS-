@@ -1,3 +1,4 @@
+# MAX JONES 23010044 AND CONTRIBUTIONS FROM DANIEL MURFIN 24015742
 import sys
 import random
 import bcrypt

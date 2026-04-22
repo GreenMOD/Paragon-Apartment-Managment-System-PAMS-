@@ -1,3 +1,4 @@
+# MIA ANDAYA-ELORRIAGA 24063899 
 from models.domain_models import Contract
 from .base_repository import BaseRepository
 from datetime import datetime

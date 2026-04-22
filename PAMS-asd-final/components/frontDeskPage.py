@@ -1,3 +1,4 @@
+# MIA ANDAYA-ELORRIAGA 24063899  AND MAX JONES 23010044
 from PySide6.QtWidgets import *
 from PySide6.QtCore import QCoreApplication, QDate, QRect
 from datetime import datetime, time

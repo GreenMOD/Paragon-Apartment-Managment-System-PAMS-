@@ -1,3 +1,5 @@
+# MAX JONES 23010044 WITH CONTRIBUTIONS FROM MIA ANDAYA-ELORRIAGA 24063899
+
 from PySide6.QtWidgets import * #the asterisks mean import everything
 from PySide6.QtGui import *
 from PySide6.QtCore import * 
@@ -457,8 +459,3 @@ app.exec()
 
 
 
-
-#TODO Have a look over and see if you can swap around how the mainwindow works its a tad inconsisitent
-
-#TODO MAKE CHECKS FOR ANY EMPTY ENTRIES
-    

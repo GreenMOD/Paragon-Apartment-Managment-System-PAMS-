@@ -1,3 +1,4 @@
+# MIA ANDAYA-ELORRIAGA 24063899 
 import mysql.connector
 from mysql.connector import errorcode
 from security.dbSecrets import devHost, devUser, devPassword, devName

@@ -1,3 +1,4 @@
+# MIA ANDAYA-ELORRIAGA 24063899 
 from models.Entities import *
 from models.db_models import TenantDTO
 from .base_repository import BaseRepository

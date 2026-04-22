@@ -1,3 +1,4 @@
+# MAX JONES 23010044 AND CONTRIBUTIONS FROM MIA ANDAYA-ELORRIAGA 24063899
 import sys
 import random
 from PySide6.QtWidgets import *

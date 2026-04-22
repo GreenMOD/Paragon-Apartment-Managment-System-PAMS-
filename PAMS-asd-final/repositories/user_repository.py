@@ -1,3 +1,4 @@
+# MIA ANDAYA-ELORRIAGA 24063899 
 from database.db import GetConnection
 from models.Entities import *
 from .base_repository import BaseRepository

@@ -1,3 +1,4 @@
+# MIA ANDAYA-ELORRIAGA 24063899 
 from models.domain_models import Location
 from .base_repository import BaseRepository
 
