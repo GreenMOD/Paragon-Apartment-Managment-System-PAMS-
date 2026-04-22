@@ -45,14 +45,15 @@ class SchedulingRepository(BaseRepository):
     
     def delete_by_request_id(self, request_id):
         query = """
-        DELETE FROM maintenance_scheduling
-        WHERE request_id = %s
-        """
-        self.execute(query, (request_id,))
-        query = """
         UPDATE worker_availability wa
         JOIN maintenance_scheduling ms ON wa.user_id = ms.user_id
         SET wa.status = 'Available'
         WHERE ms.request_id = %s
+        """
+        self.execute(query, (request_id,))
+    
+        query = """
+        DELETE FROM maintenance_scheduling
+        WHERE request_id = %s
         """
         self.execute(query, (request_id,))
